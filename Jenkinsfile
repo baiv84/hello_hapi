@@ -1,17 +1,10 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  agent any
+   agent { dockerfile true }
     
     stages {
         stage('Build') {
-            agent {
-                docker {
-                  image 'node'
-                  args '-u root'
-                }
-            }    
-            
             steps {
                 echo 'Building...'
                 sh 'npm install'
@@ -19,12 +12,6 @@ pipeline {
         }
         
         stage('Test') {
-            agent {
-                docker {
-                  image 'node'
-                  args '-u root'
-                }
-            }
             steps {
                 echo 'Testing...'
                 sh 'npm test'
