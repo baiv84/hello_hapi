@@ -1,15 +1,12 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  agent {
-        label 'docker' 
-    }
+  agent any
     
     stages {
         stage('Build') {
             agent {
                 docker {
-                  label 'docker'
                   image 'node'
                   args '-u root'
                 }
@@ -24,7 +21,6 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                  label 'docker'
                   image 'node'
                   args '-u root'
                 }
